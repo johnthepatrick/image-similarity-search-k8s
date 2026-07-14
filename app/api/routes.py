@@ -1,12 +1,12 @@
 from fastapi import APIRouter
 
-from app.services.qdrant_service import qdrant_health_check
+from app.services.qdrant_service import check_qdrant_health
 
 router = APIRouter()
 
 @router.get("/health")
 async def health_check():
-    qdrant_healthy = qdrant_health_check()
+    qdrant_healthy = check_qdrant_health()
     
     return {
         "status": "ok" if qdrant_healthy else "degraded",
@@ -15,4 +15,3 @@ async def health_check():
             "qdrant": "ok" if qdrant_healthy else "unavailable"
         }
     }
-
