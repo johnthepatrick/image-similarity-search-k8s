@@ -45,3 +45,20 @@ def create_qdrant_collection() -> bool:
     except Exception as error:
         print(f"Failed to create Qdrant collection: {error}")
         return False
+    
+def delete_qdrant_collection() -> bool:
+    collection_name = "image_vectors"
+
+    try:
+        if not client.collection_exists(collection_name):
+            print(f"Qdrant collection '{collection_name}' does not exist")
+            return True
+
+        client.delete_collection(collection_name=collection_name)
+        print(f"Qdrant collection '{collection_name}' deleted")
+        return True
+
+    except Exception as error:
+        print(f"Failed to delete Qdrant collection: {error}")
+        return False
+    
