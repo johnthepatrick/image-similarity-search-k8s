@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.services.qdrant_service import check_qdrant_health
+from services.qdrant_service import check_qdrant_health
 
 router = APIRouter()
 
